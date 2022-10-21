@@ -101,15 +101,17 @@ const getCard = (data) => {
 
 const mostrarProductosML = async() => {
     try {
-        const response = await axios.get(url, {
-            params: {
-                q: 'libros'
-            },
-        })
-        const data = response.data
-        // console.log(data)
-        addCard(data)
-        return data
+        setTimeout(async () => {
+            const response = await axios.get(url, {
+                params: {
+                    q: 'libros'
+                },
+            })
+            const data = response.data
+            // console.log(data)
+            addCard(data)
+            return data
+          }, 2000)
     } catch (error) {
         console.error(error)
     }
