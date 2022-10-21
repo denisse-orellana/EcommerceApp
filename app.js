@@ -107,7 +107,7 @@ const mostrarProductosML = async() => {
             },
         })
         const data = response.data
-        // console.log(data)
+        console.log(data)
         addCard(data)
         return data
     } catch (error) {
