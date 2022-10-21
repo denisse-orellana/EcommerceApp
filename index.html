@@ -12,12 +12,16 @@
   </head>
   <body>
     <header>
-      <h1>Find your product</h1>
+      <h1>Find your products</h1>
       <button id="mostrarBtn">Mostrar productos</button>
+      <button id="backBtn" onClick="window.location.reload();" style="display:none;">Volver</button>
+      <button id="mercadoLibreButton">Productos de Mercado Libre</button>
     </header>
     <main id="main">
       <div id="root"></div>
     </main>
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./app.js" type="module"></script>
   </body>
 </html>

@@ -1,14 +1,8 @@
-/*
-* TAREA 4: Part 1
-    1) Crear 10 productos en un array
-    2) Crear UI similando un ecommerce
-    3) Hacer una promesa Async Await
-*/
-
-
-
 import { productos } from "./products.js"
-// console.log(productos)
+
+let elMostrarBtn = document.getElementById('mostrarBtn')
+let mercadoLibreButton = document.getElementById('mercadoLibreButton')
+let url = "https://api.mercadolibre.com/sites/MLA/search"
 
 const isOk = true
 
@@ -24,7 +18,6 @@ const customFetch = (time, task) => {
   })
 }
 
-let elMostrarBtn = document.getElementById('mostrarBtn')
 
 // ---------------------------  Then Promise ---------------------------- //
 // const mostrarProductos = () => {
@@ -98,9 +91,65 @@ const getCard = (data) => {
         lista.append(cardDiv)   
     }
     document.getElementById("root").append(lista)
+
+    elMostrarBtn.style.display = "none"
+    mercadoLibreButton.style.display = "none"
+    backBtn.style.display = "inline"
 }
 // ---------------------------  Async Await Promise --------------------- //
 
 
+const mostrarProductosML = async() => {
+    try {
+        const response = await axios.get(url, {
+            params: {
+                q: 'libros'
+            },
+        })
+        const data = response.data
+        console.log(data)
+        addCard(data)
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+const addCard = (data) => {
+    let products = data.results
+    // console.log(products)
+    products.forEach(product => {
+        let div = document.createElement("div")
+        div.className = "card-product"
+
+        let h3 = document.createElement("h3")
+        h3.innerHTML = product.title
+
+        let image = document.createElement("img")
+        image.src = product.thumbnail
+        image.alt = product.title
+
+        let price = document.createElement("p")
+        price.innerHTML = `${product.prices.prices[0].currency_id} $${product.prices.prices[0].amount}`
+
+        let buyButton = document.createElement("a")
+        buyButton.style.display = "inline"
+        buyButton.innerHTML = 'Buy'
+        buyButton.href = product.permalink
+
+        div.append(h3)
+        div.append(image)
+        div.append(price)
+        div.append(buyButton)
+        document.getElementById("root").append(div)
+
+        elMostrarBtn.style.display = "none"
+        mercadoLibreButton.style.display = "none"
+        backBtn.style.display = "inline"
+        backBtn.style.background = "#FFCC70"
+        backBtn.style.color = "#282828"
+    });
+}
 
 elMostrarBtn.addEventListener('click', mostrarProductos)
+mercadoLibreButton.addEventListener('click', mostrarProductosML)

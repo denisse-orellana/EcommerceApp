@@ -43,7 +43,7 @@ header h1 {
   padding: 1rem;
 }
 
-header button {
+#mostrarBtn, #backBtn {
   padding: 1rem;
   font-size: 2rem;
   background: var(--blue);
@@ -67,7 +67,7 @@ header button {
   border-radius: .1rem;
   box-shadow: 0 4px 8px 0 var(--dark-shadow);
   text-align: center;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 }
 
 .card-product img {
@@ -88,6 +88,7 @@ header button {
   text-align: center;
   padding: .5rem;
   color: var(--gray);
+  margin-bottom: 1rem;
 }
 
 .card-product button {
@@ -98,4 +99,27 @@ header button {
   border: #4b57df;
   border-radius: .5rem;
   cursor: pointer;
+}
+
+#mercadoLibreButton {
+  color: dark;
+  padding: 1rem;
+  font-size: 2rem;
+  background: var(--yellow);
+  color: var(--dark);
+  border: var(--yellow);
+  border-radius: .5rem;
+  cursor: pointer;
+}
+
+.card-product a {
+  color: dark;
+  padding: 1rem;
+  font-size: 2rem;
+  background: var(--yellow);
+  color: var(--dark);
+  border: var(--yellow);
+  border-radius: .5rem;
+  cursor: pointer;
+  text-decoration: none;
 }
