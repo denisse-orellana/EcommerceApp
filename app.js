@@ -107,10 +107,18 @@ const mostrarProductosML = async() => {
                     q: 'libros'
                 },
             })
-            const data = response.data
-            // console.log(data)
-            addCard(data)
-            return data
+
+            if (response.status === 200) {
+                const data = response.data
+                // console.log(data)
+                addCard(data)
+                return data
+            } else if (response.status = 404) {
+                console.log('The product cannot be found.')
+            } else {
+                console.log('Ups.. Something went wrong.')
+            }
+
           }, 2000)
     } catch (error) {
         console.error(error)
